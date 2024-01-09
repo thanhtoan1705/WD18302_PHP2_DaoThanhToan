@@ -1,7 +1,7 @@
 <?php
 namespace App\Core;
 
-use PDO; // Sửa thành PDO (viết hoa)
+use PDO;
 
 class Database
 {
@@ -20,10 +20,5 @@ class Database
         } catch (\PDOException $e) { // Sửa thành \PDOException để chỉ định rõ ràng namespace global
             echo "Kết nối thất bại!: " . $e->getMessage();
         }
-    }
-
-    public function HelloWorld()
-    {
-        echo "Hello World";
     }
 }
