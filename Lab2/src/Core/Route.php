@@ -3,8 +3,10 @@
 namespace App\Core;
 
 class Route{
-    public function __construct()
+    public $route;
+
+    public function AddMiddleware()
     {
-        echo 'Đây là Route nè'. '<br>';
+        return $this->route.' Là đường dẫn';
     }
 }

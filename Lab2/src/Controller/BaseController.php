@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 class BaseController{
-    function __construct()
+    public $name;
+    public $price;
+    public function show()
     {
-        echo 'Đây là Controller nè' . '<br>';
+        return $this->name.'Là mẫu laptop mới nhất 2024 có giá là' . $this->price;
     }
 }

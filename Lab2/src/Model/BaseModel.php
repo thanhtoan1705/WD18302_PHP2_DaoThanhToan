@@ -4,8 +4,10 @@ namespace App\Model;
 
 class BaseModel
 {
-    public function __construct()
+    public $user;
+    
+    public function Update()
     {
-        echo 'Đây là Model nè' . '<br>';
+        return $this->user.' là tên tài khoản';
     }
 }
