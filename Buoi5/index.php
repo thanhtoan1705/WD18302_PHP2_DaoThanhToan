@@ -7,7 +7,26 @@ require_once 'vendor/autoload.php';
 // use App\Core\Route;
 // use App\Core\Database;
 // use App\Model\Cart;
-use App\Model\Bill;
+// use App\Model\Bill;
+
+// buoi 6
+use App\Core\Base;
+$base = new Base();
+
+// var_dump($base);
+
+// echo $base->name. "<br>";
+
+echo $base->getName(). "<br>";
+
+$base->setName("Javascript");
+
+echo $base->getName(). "<br>";
+
+echo Base::$document. "<br>";
+//ket thuc phan
+
+// use App\Core\Database;
 
 // $model = new Product();
 // $control = new BaseController();
@@ -15,7 +34,9 @@ use App\Model\Bill;
 // $Database = new Database();
 
 // $cart = new Cart();
-$bill = new bill();
-echo $bill->infoBill();
+// $bill = new bill();
+// echo $bill->infoBill();
 // echo $cart->InfoProducts();
 // echo $model->BaseModelMethod();
+
+
