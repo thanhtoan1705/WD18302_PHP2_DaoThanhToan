@@ -3,32 +3,31 @@
 namespace App\Model;
 
 use App\Model\BaseModel;
+use App\Core\Connect;
 
 class UserModel extends BaseModel
 {
     public function create(array $data)
     {
-        $this->validateData($data);
-        $query = "INSERT INTO {$this->table} (name, email) VALUES ('{$data['name']}', '{$data['email']}')";
-        $this->executeQuery($query);
-    }
+        if (isset($data['firstname'], $data['lastname'], $data['email'], $data['password'])) {
 
-    public function read($id)
-    {
-        $query = "SELECT * FROM {$this->table} WHERE id = $id";
-        $this->executeQuery($query);
-    }
+            $connect = new Connect();
+            $conn = $connect->pdo_get_connection();
 
-    public function update($id, array $data)
-    {
-        $this->validateData($data);
-        $query = "UPDATE {$this->table} SET name = '{$data['name']}', email = '{$data['email']}' WHERE id = $id";
-        $this->executeQuery($query);
-    }
-
-    public function delete($id)
-    {
-        $query = "DELETE FROM {$this->table} WHERE id = $id";
-        $this->executeQuery($query);
+            try {
+                $query = "INSERT INTO {$this->table} (firstname, lastname, email, password) VALUES (?, ?, ?, ?)";
+                $stmt = $conn->prepare($query);
+                $stmt->execute([$data['firstname'], $data['lastname'], $data['email'], $data['password']]);
+                
+            } catch (\PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            } finally {
+                unset($conn);
+            }
+        } else {
+            echo "Error: Some required fields are missing.";
+        }
     }
 }
+
+
