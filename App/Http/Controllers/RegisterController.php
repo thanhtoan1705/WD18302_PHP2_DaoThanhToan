@@ -27,7 +27,7 @@ class RegisterController extends Controller
         }
 
         if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
-            $_SESSION['Password'] = "Invalid password";
+            $_SESSION['Password'] = "Password includes capital letters, numbers and has 8 characters";
         }
 
         if (!preg_match('/^[0-9]{10,}$/', $phone)) {
