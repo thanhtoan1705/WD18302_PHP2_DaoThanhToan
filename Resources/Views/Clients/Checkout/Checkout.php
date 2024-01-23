@@ -48,73 +48,9 @@
 							</div>
 						</div>
 						<form class="row">
-							<div class="col-md-6">
-								<div class="form-group m-b25">
-									<label class="label-title">First Name</label>
-									<input name="dzName" required="" class="form-control">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group m-b25">
-									<label class="label-title">Last Name</label>
-									<input name="dzName" required="" class="form-control">
-								</div>
-							</div>
 							<div class="col-md-12">
 								<div class="form-group m-b25">
-									<label class="label-title">Company name (optional)</label>
-									<input name="dzName" required="" class="form-control">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="m-b25">
-									<label class="label-title">Country / Region *</label>
-									<div class="form-select">
-										<select class="default-select w-100">
-											<option selected="">India</option>
-											<option value="1">Another option</option>
-											<option value="2">UK</option>
-											<option value="3">Iraq</option>
-										</select>	
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group m-b25">
-									<label class="label-title">Street address *</label>
-									<input name="dzName" required="" class="form-control m-b15" placeholder="House number and street name">
-									<input name="dzName" required="" class="form-control" placeholder="Apartment, suite, unit, etc. (optional)">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="m-b25">
-									<label class="label-title">Town / City *</label>
-									<div class="form-select">
-										<select class="default-select w-100">
-											<option selected="">Kota</option>
-											<option value="1">Another option</option>
-											<option value="2">Jaipur</option>
-											<option value="3">Udaipur</option>
-										</select>	
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="m-b25">
-									<label class="label-title">State *</label>
-									<div class="form-select">
-										<select class="default-select w-100">
-											  <option selected="">Rajasthan</option>
-											  <option value="1">Another option</option>
-											  <option value="2">Rajasthan</option>
-											  <option value="3">Rajasthan</option>
-										</select>	
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group m-b25">
-									<label class="label-title">ZIP Code *</label>
+									<label class="label-title">Username *</label>
 									<input name="dzName" required="" class="form-control">
 								</div>
 							</div>
@@ -130,18 +66,10 @@
 									<input name="dzName" required="" class="form-control">
 								</div>
 							</div>
-							<div class="col-md-12 m-b25">
-								<div class="form-group m-b5">
-								   <div class="custom-control custom-checkbox">
-										<input type="checkbox" class="form-check-input" id="basic_checkbox_1">
-										<label class="form-check-label" for="basic_checkbox_1">Create an account? </label>
-									</div>
-								</div>
-								<div class="form-group">
-								   <div class="custom-control custom-checkbox">
-										<input type="checkbox" class="form-check-input" id="basic_checkbox_2">
-										<label class="form-check-label" for="basic_checkbox_2">Ship to a different address?</label>
-									</div>
+							<div class="col-md-12">
+								<div class="form-group m-b25">
+									<label class="label-title">Address *</label>
+									<input name="dzName" required="" class="form-control">
 								</div>
 							</div>
 							<div class="col-md-12 m-b25">
@@ -179,27 +107,6 @@
 										<td>Subtotal</td>
 										<td class="price">$100</td>
 									</tr>
-									<tr class="title">
-										<td><h6 class="title font-weight-500">Shipping</h6></td>
-										<td></td>
-									</tr>
-									<tr class="shipping">
-										<td>
-											<div class="custom-control custom-checkbox">
-											  <input class="form-check-input radio" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-											  <label class="form-check-label" for="flexRadioDefault1">
-												Free shipping
-											  </label>
-											</div>
-											<div class="custom-control custom-checkbox">
-											  <input class="form-check-input radio" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-											  <label class="form-check-label" for="flexRadioDefault2">
-												Flat Rate:
-											  </label>
-											</div>
-										</td>
-										<td class="price">25.75</td>
-									</tr>
 									<tr class="total">
 										<td>Total</td>
 										<td class="price">$125.75</td>
@@ -210,14 +117,6 @@
 							
 							<div class="accordion dz-accordion accordion-sm" id="accordionFaq1">
 								<div class="accordion-item">
-									<div class="accordion-header" id="heading1">
-										<div class="accordion-button collapsed custom-control custom-checkbox" data-bs-toggle="collapse" data-bs-target="#collapse1" role="navigation" aria-expanded="true" aria-controls="collapse1">
-											<input class="form-check-input radio" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-											<label class="form-check-label" for="flexRadioDefault3">
-												Direct bank transfer
-											</label>
-										</div>
-									</div>
 									<div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordionFaq1">
 										<div class="accordion-body">
 											<p class="m-b0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>

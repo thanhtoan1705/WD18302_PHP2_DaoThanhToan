@@ -15,26 +15,46 @@
                     <img src="<?= APP_URL ?>public/assets/clients/images/registration/pic3.jpg" alt="/">
                 </div>
             </div>
+            <style>
+                .error-message{
+                    color: red;
+                }
+            </style>
             <div class="col-xxl-6 col-xl-6 col-lg-6 end-side-content">
                 <div class="login-area">
                     <h2 class="text-secondary text-center">Register</h2>
                     <p class="text-center m-b25">Create an account here</p>
-                    <form>
+                    <form action="" method="post">
                         <div class="m-b30">
                             <label class="label-title">Username</label>
-                            <input name="Username" required="" class="form-control" placeholder="Username" type="text">
+                            <input name="Username" class="form-control" placeholder="Username" type="text">
+                            <?php if (isset($_SESSION['Username'])) : ?>
+                                <span class="error-message"><?= $_SESSION['Username'] ?></span>
+                            <?php endif; ?>
                         </div>
+
                         <div class="m-b30">
                             <label class="label-title">Email Address</label>
-                            <input name="dzName" required="" class="form-control" placeholder="Email Address" type="email">
+                            <input name="Email" class="form-control" placeholder="Email Address" type="email">
+                            <?php if (isset($_SESSION['Email'])) : ?>
+                                <span class="error-message"><?= $_SESSION['Email'] ?></span>
+                            <?php endif; ?>
                         </div>
+
                         <div class="m-b15">
                             <label class="label-title">Password</label>
-                            <input name="dzName" required="" class="form-control" placeholder="Password" type="password">
+                            <input name="Password" class="form-control" placeholder="Password" type="password">
+                            <?php if (isset($_SESSION['Password'])) : ?>
+                                <span class="error-message"><?= $_SESSION['Password'] ?></span>
+                            <?php endif; ?>
                         </div>
+
                         <div class="m-b30">
                             <label class="label-title">Phone</label>
-                            <input name="Phone" required="" class="form-control" placeholder="Phone" type="text">
+                            <input name="Phone" class="form-control" placeholder="Phone" type="text">
+                            <?php if (isset($_SESSION['Phone'])) : ?>
+                                <span class="error-message"><?= $_SESSION['Phone'] ?></span>
+                            <?php endif; ?>
                         </div>
                         <div class="form-row d-flex justify-content-between m-b30">
                             <div class="form-group">
@@ -45,7 +65,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <a href="shop-registration.html" class="btn btn-outline-secondary btnhover text-uppercase">Register</a>
+                            <button type="submit" class="btn btn-outline-secondary btnhover text-uppercase">Register</button>
                         </div>
                     </form>
                 </div>
