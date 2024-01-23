@@ -1,0 +1,16 @@
+{
+    "name": "admin/asm_php2",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./App/",
+            "App\\Routes\\": "./Routes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "thanhtoan1705",
+            "email": "153188343+thanhtoan1705@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}

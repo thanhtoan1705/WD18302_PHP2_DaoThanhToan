@@ -1,0 +1,5 @@
+RewriteEngine On
+
+RewriteRule ^([a-zA-Z0-9]+)$ index.php?url=$1
+RewriteRule ^product/([A-Za-z0-9-]+)$ index.php?url=product&slug=$1 [L]
+ErrorDocument 404 http://localhost/php2/final/404
