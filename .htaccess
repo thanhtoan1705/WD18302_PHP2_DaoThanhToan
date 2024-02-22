@@ -1,0 +1,8 @@
+RewriteEngine On
+
+RewriteRule ^([a-zA-Z0-9]+)$ index.php?url=$1
+RewriteRule ^product/([A-Za-z0-9-]+)$ index.php?url=product&slug=$1 [L]
+RewriteRule ^cart/([A-Za-z0-9-]+)$ index.php?url=cart&slug=$1 [L]
+RewriteRule ^404/?$ 404 [L]
+
+ErrorDocument 404 /php2/final/404
