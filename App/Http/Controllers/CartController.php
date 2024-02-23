@@ -65,6 +65,26 @@ class CartController extends Controller
         }
     }
 
+    public function updateCart()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cartId'])) {
+            $cartId = $_POST['cartId'];
+            $quantity = $_POST['quantity'];
+
+            // Update the cart item in the database
+            $updateStatus = $this->cartModel->updateCartItemQuantity($cartId, $quantity);
+
+            if ($updateStatus) {
+                // Redirect to the cart page after successful update
+                header("Location: /cart");
+                exit();
+            } else {
+                echo 'Failed to update cart item';
+            }
+        }
+    }
+
+
     public function getCartItemCount()
     {
         if (isset($_SESSION['user'])) {

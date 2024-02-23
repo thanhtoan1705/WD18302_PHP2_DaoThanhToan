@@ -18,6 +18,7 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/product', [ProductController::class, 'index']);
 $router->get('/cart', [CartController::class, 'index']);
 $router->post('/cart', [CartController::class, 'addToCart']);
+$router->post('/cart', [CartController::class, 'updateCart']);
 $router->get('/checkout', [CheckoutController::class, 'index']);
 $router->post('/checkout', [CheckoutController::class, 'index']);
 $router->get('/login', [LoginController::class, 'index']);

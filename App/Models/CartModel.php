@@ -58,6 +58,13 @@ class CartModel extends BaseModel
         return $this->get();
     }
 
+    public function updateCartItemQuantity($cartId, $quantity)
+    {
+        $data = ['quantity' => $quantity];
+        return $this->table($this->table)->update($data)->where('id', '=', $cartId);
+    }
+
+
     public function getCartItemCount($userId)
     {
         return $this->table($this->table)->where('id_user', '=', $userId)->count();

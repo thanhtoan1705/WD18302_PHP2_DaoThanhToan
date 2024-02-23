@@ -22,7 +22,6 @@ class UserModel extends BaseModel
     }
 
     public function updateAccount($id, $data) {
-        
         $updated = $this->table($this->table)->where('id', '=', $id)->update($data);
     
         if ($updated) {
@@ -34,7 +33,8 @@ class UserModel extends BaseModel
         }
     
         return $updated;
-    }              
+    }
+    
 
     public function getAccountById($accountId)
     {

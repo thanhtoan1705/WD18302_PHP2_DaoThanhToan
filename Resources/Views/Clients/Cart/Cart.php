@@ -44,9 +44,14 @@
 										<td class="product-item-name"><?= $carts['name'] ?></td>
 										<td class="product-item-price">$<?= $carts['price'] ?></td>
 										<td class="product-item-quantity">
-											<div class="quantity btn-quantity style-1 me-3">
+											<!-- <div class="quantity btn-quantity style-1 me-3">
 												<input type="text" value="<?= $carts['quantity'] ?>" name="demo_vertical2">
-											</div>
+											</div> -->
+											<form action="<?= APP_URL ?>cart" method="post">
+											<input type="hidden" name="cartId" value="<?= $carts['id'] ?>">
+												<div class="btn-quantity light">
+													<input type="text" value="<?= $carts['quantity'] ?>" name="quantity" class="quantity-input" required>
+												</div>
 										</td>
 										<td class="product-item-totle">$<?= $carts['total'] ?></td>
 										<td class="product-item">
@@ -61,7 +66,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<div class="input-group mb-0">
-									<input name="dzEmail" required="required" type="text" class="form-control" placeholder="Coupon Code">
+									<input name="dzEmail" type="text" class="form-control" placeholder="Coupon Code">
 									<div class="input-group-addon">
 										<button name="submit" value="Submit" type="submit" class="btn coupon">
 											Apply Coupon
@@ -71,8 +76,10 @@
 							</div>
 						</div>
 						<div class="col-md-6 text-end">
-							<a href="shop-cart.html" class="btn btn-grey">UPDATE CART</a>
+							<button type="submit" class="btn btn-primary btn-update-cart">UPDATE CART</button>
+							<!-- <a href="shop-cart.html" class="btn btn-grey">UPDATE CART</a> -->
 						</div>
+						</form>
 					</div>
 				</div>
 				<div class="col-lg-4">

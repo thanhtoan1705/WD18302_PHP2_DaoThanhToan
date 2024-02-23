@@ -47,9 +47,10 @@ abstract class BaseModel implements CrudInterface
         $whereUpdate = str_replace('WHERE', '', $this->where);
         $whereUpdate = trim($whereUpdate);
         $tableName = $this->tableName;
-        $updateStatus = $this->updateData($tableName, $data, $whereUpdate);
-        return $updateStatus;
+        $this->updateData($tableName, $data, $whereUpdate);
+        return $this;
     }
+    
 
     public function delete($condition): bool
     {

@@ -29,7 +29,7 @@ trait QueryBuilder
     public function query($sql)
     {
         // var_dump($sql);
-        // echo $sql;
+        echo $sql;
         $stmt = $this->_connection->pdo()->prepare($sql);
         $stmt->execute();
         return $stmt;
