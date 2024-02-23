@@ -76,7 +76,7 @@
 							</div>
 						</div>
 						<div class="col-md-6 text-end">
-							<button type="submit" class="btn btn-primary btn-update-cart">UPDATE CART</button>
+							<button type="submit" class="btn btn-primary btn-update-cart" name="update_cart">UPDATE CART</button>
 							<!-- <a href="shop-cart.html" class="btn btn-grey">UPDATE CART</a> -->
 						</div>
 						</form>

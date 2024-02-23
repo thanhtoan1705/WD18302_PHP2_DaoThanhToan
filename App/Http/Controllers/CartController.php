@@ -27,6 +27,15 @@ class CartController extends Controller
         $this->View('/clients/cart/cart', $data);
     }
 
+    public function processCart()
+    {
+        if (isset($_POST['add_to_cart'])) {
+            $this->addToCart();
+        } elseif (isset($_POST['update_cart'])) {
+            $this->updateCart();
+        }
+    }
+
     public function addToCart()
     {
         $productId = $_POST['productId'];
@@ -70,12 +79,9 @@ class CartController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cartId'])) {
             $cartId = $_POST['cartId'];
             $quantity = $_POST['quantity'];
-
-            // Update the cart item in the database
             $updateStatus = $this->cartModel->updateCartItemQuantity($cartId, $quantity);
 
             if ($updateStatus) {
-                // Redirect to the cart page after successful update
                 header("Location: /cart");
                 exit();
             } else {

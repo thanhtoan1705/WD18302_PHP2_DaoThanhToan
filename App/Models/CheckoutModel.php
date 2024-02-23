@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Helpers\MailHelper;
 
 class CheckoutModel extends BaseModel
@@ -40,7 +41,17 @@ class CheckoutModel extends BaseModel
             $billId = $this->table($this->table)->create($data);
             if ($billId) {
                 $this->insertBillDetails($billId, $cartItems);
-                $this->deleteCartItems($_SESSION['user']['id']);
+
+                // Giảm số lượng sản phẩm trong bảng products
+                foreach ($cartItems as $cartItem) {
+                    $productId = $cartItem['id_pro'];
+                    $quantity = $cartItem['quantity'];
+
+                    // Trừ đi số lượng đã đặt hàng
+                    $this->table('products')
+                        ->where('id', '=', $productId)
+                        ->update(['quantity' => "quantity - $quantity"]);
+                }
 
                 // $orderInfo = $this->getOrderInfo($billId);
                 // $to = $email;
@@ -48,6 +59,8 @@ class CheckoutModel extends BaseModel
                 // $message = "Thank you for your order!\n\n";
                 // $mailHelper = new MailHelper();
                 // $mailHelper->sendOrderConfirmation($to, $subject, $message);
+
+                $this->deleteCartItems($_SESSION['user']['id']);
                 header("Location: /cart");
             }
         }

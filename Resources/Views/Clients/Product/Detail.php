@@ -134,7 +134,7 @@
 									</div>
 									<input type="hidden" name="price" value="<?= $data['product']['price'] ?>">
 									<input type="hidden" name="image" value="<?= $data['product']['image'] ?>">
-									<button type="submit" class="btn btn-secondary text-uppercase mt-3">Thêm vào giỏ hàng</button>
+									<button type="submit" class="btn btn-secondary text-uppercase mt-3" name="add_to_cart">Thêm vào giỏ hàng</button>
 								</form>
 							</div>
 							<!-- <div class="btn-group cart-btn">
