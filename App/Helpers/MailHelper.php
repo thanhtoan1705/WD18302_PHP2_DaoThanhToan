@@ -5,6 +5,7 @@ namespace App\Helpers;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use App\Models\CheckoutModel;
 
 class MailHelper
 {
@@ -37,49 +38,57 @@ class MailHelper
         $this->_mail->addBCC('bcc@example.com');
     }
 
-    public function sendOrderConfirmation($to, $subject, $message)
+    public function sendConfirmationEmail($data, $cartItems, $idBill)
     {
-        try {
-            $this->config();
-            $this->setDefaultRecipients();
-            $this->_mail->addAddress($to);
-            $this->_mail->Subject = $subject;
+        $this->config();
+        $this->setDefaultRecipients();
+        $this->_mail->Subject = 'Order Confirmation';
 
-            $htmlMessage = $this->getOrderConfirmationHTML($message);
+        $templateFile = APP_URL . 'Resources/Views/Clients/Order/order-confirmation-template.php';
+        $templateContent = file_get_contents($templateFile);
+        $totalAll = array_sum(array_column($cartItems, 'total'));
 
-            $this->_mail->isHTML(true);
-            $this->_mail->Body = $htmlMessage;
-            $this->_mail->AltBody = strip_tags($htmlMessage);
+        $Checkout = new CheckoutModel();
+        $billInfo = $Checkout->getBillInfo($idBill);
 
-            $this->_mail->send();
+        // Thay thế các giá trị placeholder bằng dữ liệu thực
+        $templateContent = str_replace('{{code_order}}', $billInfo['code_order'], $templateContent);
+        $templateContent = str_replace('{{name}}', $data['name'], $templateContent);
+        $templateContent = str_replace('{{email}}', $data['email'], $templateContent);
+        $templateContent = str_replace('{{phone}}', $data['phone'], $templateContent);
+        $templateContent = str_replace('{{address}}', $billInfo['address'], $templateContent);
+        $templateContent = str_replace('{{total}}', $data['total'], $templateContent);
+        $templateContent = str_replace('{{payment_method}}', $billInfo['payment_methods'], $templateContent);
+        $templateContent = str_replace('{{total_all}}', $totalAll, $templateContent);
 
-            // Sending a copy to the admin
-            $adminEmail = 'toan11158@gmail.com';
-            $adminSubject = "New Order - {$subject}";
-            $adminMessage = "You have a new order!\n\n";
-
-            foreach ($message as $item) {
-                $adminMessage .= "{$item['name']} - {$item['quantity']} items\n";
-            }
-
-            $this->_mail->ClearAddresses();
-            $this->_mail->addAddress($adminEmail);
-            $this->_mail->Subject = $adminSubject;
-            $this->_mail->Body = $adminMessage;
-            $this->_mail->AltBody = strip_tags($adminMessage);
-
-            $this->_mail->send();
-
-            return true;
-        } catch (Exception $e) {
-            return "Message could not be sent. Mailer Error: {$this->_mail->ErrorInfo}";
+        $productRows = '';
+        $paymentMethodText = ($billInfo['payment_methods'] == 0) ? 'Payment upon delivery' : 'Payment via Momo';
+        foreach ($cartItems as $item) {
+            $productRows .= '
+        <tr>
+            <td>' . $billInfo['code_order'] . '</td>
+            <td>' . $item['name'] . '</td>
+            <td>$' . $item['price'] . '</td>
+            <td>' . $item['quantity'] . '</td>
+            <td>$' . $item['total'] . '</td>
+            <td>' . $billInfo['address'] . '</td>
+            <td>' . $paymentMethodText. '</td>
+        </tr>';
         }
-    }
+        $productRows .= '
+        <tr>
+            <td colspan="4">TOTAL</td>
+            <td>$'. $totalAll .'</td>
+            <td colspan="2"></td>
+        </tr>';
 
-    private function getOrderConfirmationHTML($message)
-    {
-        ob_start();
-        include('D:\ASM-PHP2\Resources\Views\Clients\Order\order-confirmation-template.php');
-        return ob_get_clean();
+        $templateContent = str_replace('{{product_rows}}', $productRows, $templateContent);
+        $body = $templateContent;
+
+
+        $this->_mail->isHTML(true);
+        $this->_mail->Subject = 'Order Confirmation';
+        $this->_mail->Body = $body;
+        $this->_mail->send();
     }
 }

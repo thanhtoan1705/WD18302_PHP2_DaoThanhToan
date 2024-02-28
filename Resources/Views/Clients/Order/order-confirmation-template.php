@@ -1,6 +1,6 @@
-<!-- order-confirmation-template.php -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +10,21 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa; /* Màu nền của body */
+            background-color: #f8f9fa;
+            /* Màu nền của body */
             margin: 0;
             padding: 20px;
         }
 
         .container {
-            max-width: 600px; /* Giới hạn chiều rộng của email */
+            max-width: 600px;
+            /* Giới hạn chiều rộng của email */
             margin: auto;
         }
 
         .header {
-            background-color: #007bff; /* Màu nền của tiêu đề */
+            background-color: #007bff;
+            /* Màu nền của tiêu đề */
             padding: 10px;
             text-align: center;
             color: white;
@@ -30,7 +33,8 @@
         .table {
             width: 100%;
             margin-bottom: 20px;
-            background-color: #ffffff; /* Màu nền của bảng */
+            background-color: #ffffff;
+            /* Màu nền của bảng */
         }
 
         .table th,
@@ -41,18 +45,21 @@
         }
 
         .table th {
-            background-color: #f8f9fa; /* Màu nền của tiêu đề cột */
+            background-color: #f8f9fa;
+            /* Màu nền của tiêu đề cột */
         }
 
         .footer {
             margin-top: 20px;
-            background-color: #007bff; /* Màu nền của chân trang */
+            background-color: #007bff;
+            /* Màu nền của chân trang */
             padding: 10px;
             text-align: center;
             color: white;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -62,20 +69,18 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Order Code</th>
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Address</th>
+                    <th>Payment methods</th>
                 </tr>
+
             </thead>
             <tbody>
-                <!-- Dòng này lặp qua các sản phẩm trong đơn hàng và thêm chúng vào bảng -->
-                <?php foreach ($message as $item): ?>
-                    <tr>
-                        <td><?php echo $item['name']; ?></td>
-                        <td><?php echo $item['price']; ?></td>
-                        <td><?php echo $item['quantity']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
+                {{product_rows}}
             </tbody>
         </table>
 
@@ -84,4 +89,5 @@
         </div>
     </div>
 </body>
+
 </html>

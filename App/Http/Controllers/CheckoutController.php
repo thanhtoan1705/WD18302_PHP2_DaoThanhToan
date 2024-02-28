@@ -22,7 +22,6 @@ class CheckoutController extends Controller
             $paymentMethod = isset($_POST['payment_method']) ? $_POST['payment_method'] : 0;
             $checkoutModel = new CheckoutModel();
             $checkoutModel->addBill($cartItems, $paymentMethod);
-            // header("Location: /cart");
         } else {
 
         }
@@ -32,3 +31,4 @@ class CheckoutController extends Controller
         $this->View('/clients/checkout/checkout', $data);
     }
 }
+?>

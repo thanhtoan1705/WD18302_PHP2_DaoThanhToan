@@ -17,6 +17,7 @@ class CheckoutModel extends BaseModel
         }, 0);
 
         $total = $subtotal;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $email = $_POST['email'];
@@ -42,26 +43,30 @@ class CheckoutModel extends BaseModel
             if ($billId) {
                 $this->insertBillDetails($billId, $cartItems);
 
-                // Giảm số lượng sản phẩm trong bảng products
+                $updateQueries = [];
+
                 foreach ($cartItems as $cartItem) {
                     $productId = $cartItem['id_pro'];
                     $quantity = $cartItem['quantity'];
 
-                    // Trừ đi số lượng đã đặt hàng
-                    $this->table('products')
-                        ->where('id', '=', $productId)
-                        ->update(['quantity' => "quantity - $quantity"]);
+                    $updateQueries[] = [
+                        'id' => $productId,
+                        'quantity' => $quantity,
+                    ];
                 }
 
-                // $orderInfo = $this->getOrderInfo($billId);
-                // $to = $email;
-                // $subject = "Order Confirmation";
-                // $message = "Thank you for your order!\n\n";
-                // $mailHelper = new MailHelper();
-                // $mailHelper->sendOrderConfirmation($to, $subject, $message);
+                foreach ($updateQueries as $updateQuery) {
+                    $productId = $updateQuery['id'];
+                    $updateQuantity = $updateQuery['quantity'];
+
+                    $this->table('products')
+                        ->where('id', '=', $productId)
+                        ->update(['quantity' => "quantity - $updateQuantity"]);
+                }
+                $mailHelper = new MailHelper();
+                $mailHelper->sendConfirmationEmail($data, $cartItems, $billId);
 
                 $this->deleteCartItems($_SESSION['user']['id']);
-                header("Location: /cart");
             }
         }
     }
@@ -80,6 +85,17 @@ class CheckoutModel extends BaseModel
         }
     }
 
+    public function getBillInfo($billId)
+    {
+        $billInfo = $this->table($this->table)
+            ->select('code_order, address, payment_methods')
+            ->orWhere('id', '=', $billId)
+            ->first();
+
+        return $billInfo;
+    }
+
+
     private function generateRandomCodeOrder()
     {
         $randomNumber = mt_rand(100000, 999999);
@@ -94,11 +110,11 @@ class CheckoutModel extends BaseModel
         $cartModel->deleteAllCartsByUserId($userId);
     }
 
-    private function getOrderInfo($billId)
-    {
-        $this->where('id', '=', $billId);
-        return $this->getOne($billId);
-    }
+    // private function getOrderInfo($billId)
+    // {
+    //     $this->where('id', '=', $billId);
+    //     return $this->getOne($billId);
+    // }
 
     public function getOrderHistory($userId)
     {
