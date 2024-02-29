@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginGoogleController;
 use App\Routes\Router;
 
 $router = new Router;
@@ -36,4 +37,7 @@ if ($slug) {
    $router->get('/product', [ProductController::class, 'detail']);
    $router->get('/cart', [CartController::class, 'deleteCart']);
 }
+
+$router->get('auth/google', [LoginGoogleController::class, 'redirectToGoogle']);
+$router->get('auth/google/callback', [LoginGoogleController::class, 'handleGoogleCallback']);
 $router->run();

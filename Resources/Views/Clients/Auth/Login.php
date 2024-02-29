@@ -53,9 +53,6 @@
 									<label class="form-check-label" for="basic_checkbox_1">Remember Me</label>
 								</div>
 							</div> -->
-							<div class="form-group">
-								<a class="text-primary" href="javascript:void(0);">Forgot Password</a>
-							</div>
 						</div>
 						<div class="text-center">
 							<button type="submit" class="btn btn-secondary btnhover text-uppercase me-2">Login</button>

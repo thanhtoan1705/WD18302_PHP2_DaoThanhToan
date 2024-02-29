@@ -172,6 +172,7 @@
 											</label>
 										</div>
 									</div>
+									<input type="hidden" name="payUrl" id="payUrl" value="">
 									<div id="collapseMomo" class="accordion-collapse collapse" aria-labelledby="headingMomo" data-bs-parent="#accordionFaq1">
 										<div class="accordion-body">
 											<p class="m-b0">Make your payment using Momo. Please complete the payment within the specified time.</p>

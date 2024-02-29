@@ -40,4 +40,11 @@ class UserModel extends BaseModel
     {
         return $this->table($this->table)->getOne($accountId);
     }
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'google_id'
+    ];
 }

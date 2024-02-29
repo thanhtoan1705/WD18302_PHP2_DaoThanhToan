@@ -114,9 +114,9 @@
                 </div>
                 <div class="col-md-6">
                     <?php
-                    if (isset($_SESSION['error'])) {
-                        echo '<div class="alert alert-danger mt-3" role="alert">' . $_SESSION['error'] . '</div>';
-                        unset($_SESSION['error']); 
+                    if (isset($_SESSION['error1'])) {
+                        echo '<div class="alert alert-danger mt-3" role="alert">' . $_SESSION['error1'] . '</div>';
+                        unset($_SESSION['error1']);
                     }
                     if (isset($_SESSION['success'])) {
                         echo '<div class="alert alert-success mt-3" role="alert">' . $_SESSION['success'] . '</div>';
@@ -129,14 +129,32 @@
                         <div class="mb-3">
                             <label for="username" class="form-label">Username:</label>
                             <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['user']['name'] ?>">
+                            <?php
+                            if (isset($_SESSION['name'])) {
+                                echo '<div class="text-danger">' . $_SESSION['name'] . '</div>';
+                                unset($_SESSION['name']);
+                            }
+                            ?>
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone:</label>
                             <input type="tel" class="form-control" id="phone" name="phone" value="<?= $_SESSION['user']['phone'] ?>">
+                            <?php
+                            if (isset($_SESSION['phone'])) {
+                                echo '<div class="text-danger">' . $_SESSION['phone'] . '</div>';
+                                unset($_SESSION['phone']);
+                            }
+                            ?>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email:</label>
                             <input type="text" class="form-control" id="email" name="email" value="<?= $_SESSION['user']['email'] ?>">
+                            <?php
+                            if (isset($_SESSION['email'])) {
+                                echo '<div class="text-danger">' . $_SESSION['email'] . '</div>';
+                                unset($_SESSION['email']);
+                            }
+                            ?>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address:</label>

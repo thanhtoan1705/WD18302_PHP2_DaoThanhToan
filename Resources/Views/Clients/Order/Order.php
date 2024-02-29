@@ -79,7 +79,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <img src="./public/images/img-1.jpg" alt="Profile Picture" class="profile-picture">
-                    <h2 class="profile-title">Toandt</h2>
+                    <h2 class="profile-title"><?= $_SESSION['user']['name'] ?></h2>
                     <div class="profile-links">
                         <div class="col">
                             <a href="<?= APP_URL ?>account" class="text-white">Account</a>
@@ -94,7 +94,7 @@
                             <a href="#" class="text-white">Order Canceled</a>
                         </div>
                         <div class="col">
-                            <a href="#" class="text-white">Logout</a>
+                            <a href="<?= APP_URL ?>logout" class="text-white">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                                 <th scope="col" class="text-left">Total</th>
                                 <th scope="col" class="text-left">Booking date</th>
                                 <th scope="col" class="text-left">Status</th>
-                                <th scope="col" class="text-left">Manager</th>
+                                <!-- <th scope="col" class="text-left">Manager</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -157,11 +157,11 @@
                                         }
                                         ?>
                                     </td>
-                                    <td class="text-left">
+                                    <!-- <td class="text-left">
                                         <a href="#" class="">View</a>
                                         <a href="#" class="">Edit</a>
                                         <a href="#" class="">Cancel</a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
